@@ -1,0 +1,26 @@
+{
+  "model": "BAAI/bge-small-zh-v1.5",
+  "model_snapshot": "46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59",
+  "dataset": "mteb/T2Retrieval dev derived pilot",
+  "queries": 100,
+  "passages": 1000,
+  "output_k": 20,
+  "retrieval": "exact cosine search over all 1000 original parent passages; no frozen top50 reranking",
+  "only_change": "pooling applied consistently to query and passage token representations",
+  "pooling": {
+    "cls": "last_hidden_state[:,0]",
+    "mean": "attention-mask-weighted mean of last_hidden_state; padding excluded, CLS/SEP included"
+  },
+  "normalization": "L2 for both query and passage in both variants",
+  "max_length": 512,
+  "truncation": "right",
+  "document_batch_size": 64,
+  "query_batch_size": 256,
+  "threads": 4,
+  "device": "CPU",
+  "query_instruction": "none; original pilot query processing, not a query-enhancement experiment",
+  "forward_pass": "shared token outputs for both pooling variants; fixed local ONNX weights",
+  "interpretation": "frozen-model inference pooling comparison; not training-time or architecture ablation",
+  "unjudged_policy": "treated as non-relevant, not confirmed negatives",
+  "source": "https://huggingface.co/BAAI/bge-small-zh-v1.5#using-huggingface-transformers"
+}

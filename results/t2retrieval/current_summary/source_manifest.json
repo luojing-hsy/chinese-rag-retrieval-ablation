@@ -1,0 +1,19 @@
+{
+  "requirements-experiment.txt": "b9507b60634469ba5b22cd32ca4467ffd9f33a7eebcb01a3b8356f59a78724cd",
+  "results\\t2retrieval\\additional_ablation\\metrics.csv": "a62206daf40efd7b79e3ffcb15c456ed23a88b53cb72d69eda43111c4fb8c3ae",
+  "results\\t2retrieval\\additional_ablation\\retrievals_bge_cls_document_l2_off.jsonl": "91904c720218ac7758766fc07c778eb913f94b778055e8487bd23d2bb403d33d",
+  "results\\t2retrieval\\additional_ablation\\retrievals_bge_max.jsonl": "8a088e64719500aa990564db3e830e36316e4fe118c7dfff1d62f4f365f3d2c0",
+  "results\\t2retrieval\\additional_ablation\\retrievals_bm25l.jsonl": "c6ba66ff84a2b5c73a5335e93921c071ae0b2606f2481cbc195e9e9fc98a2518",
+  "results\\t2retrieval\\additional_ablation\\retrievals_bm25plus.jsonl": "0aea0195317db132eb82d1932932d7c4b5c8139ef182331c09a79f433b2fa484",
+  "results\\t2retrieval\\pilot\\metrics.csv": "3b8d4cd3a9ab068057bd6b26d0cf16c84bfd20a8d5cdb5f1e9a97b78791a6eea",
+  "results\\t2retrieval\\pilot\\query_sample.jsonl": "f934cf775638ca5103a7212ac54a122325ad12285ac7c1340a30ec37629558bf",
+  "results\\t2retrieval\\pilot\\retrievals_bm25_top20.jsonl": "067e1f388149aa35bd75ab7d33186d291c98f3dcdecccfe1f79283288df8e7cf",
+  "results\\t2retrieval\\pilot\\retrievals_bm25_top20_bge_rerank.jsonl": "4215fc04bc2cf7ce7386f592d477fbcf1b3852d22fc7937cac5c4ec848a44882",
+  "results\\t2retrieval\\pilot\\retrievals_dense_bge_small_zh_top20.jsonl": "28d52fc6ec8d0bdb443ac8d3689c6ef3619d047c4b6b07e52fa4a3efd04f1cbd",
+  "results\\t2retrieval\\pilot\\retrievals_hybrid_rrf_top20.jsonl": "24ca69bfe300edd29d35775ca57903166c83ad9b8770153f2bdb2e9c9c990a89",
+  "results\\t2retrieval\\pooling_ablation\\metrics.csv": "9f6b8b9e9d1a815a3b9302eda1a98c4f15d3df9902a2846a30088b87f929e8cd",
+  "results\\t2retrieval\\pooling_ablation\\retrievals_bge_mean.jsonl": "9797456cd9e800d1e984a37b18b235023579b7fb5457172f9406378889864d8e",
+  "results\\t2retrieval\\retrieval_extensions\\local\\metrics.csv": "961325dd4f790c4e2b5e955d3fbcd9039d0d23d91bdc5b98d962733a1dae411c",
+  "results\\t2retrieval\\retrieval_extensions\\local\\retrievals_tfidf_word.jsonl": "8633456e5e8c2141992365569d030149782953a7d810b1d69d85b90e46ab51b1",
+  "results\\t2retrieval\\rrf_depth_audit.json": "4aecc0dbbdc7d00a7edc1d018a86a9117c263b15468302b5b1b592025afa61d4"
+}

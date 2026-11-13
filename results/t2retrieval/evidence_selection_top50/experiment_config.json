@@ -1,0 +1,26 @@
+{
+  "dataset": "mteb/T2Retrieval dev derived pilot",
+  "parent_pool_size": 1000,
+  "queries": 100,
+  "candidate_k": 50,
+  "output_k": 20,
+  "model": "BAAI/bge-small-zh-v1.5",
+  "model_snapshot": "46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59",
+  "query_processing": "reuse original saved BGE query cosine scores; no query modification",
+  "mmr_gamma": 0.25,
+  "dartboard_sigma": 0.1,
+  "parameter_policy": "fixed before first run; exploratory settings, no evaluation-set tuning",
+  "mmr_formula": "query_cosine - gamma * max cosine to selected; first = highest query cosine",
+  "dartboard_formula": "scaled distance=(1-cosine)/2; Gaussian log kernel=-distance^2/(2*sigma^2); greedy logsumexp of query kernel + max selected document kernel",
+  "dartboard_initial_choice": "highest query cosine, following paper algorithm",
+  "tie_break": "first in original BGE candidate order",
+  "controlled_ablation": "dense_top20 vs mmr_gamma_025: only redundancy penalty is enabled",
+  "mechanism_comparison": "dartboard_sigma_01 vs dense_top20/MMR; not a single-component ablation",
+  "unjudged_policy": "treated as non-relevant; not confirmed negatives",
+  "sources": {
+    "mmr": "https://doi.org/10.1145/290941.291025",
+    "dartboard": "https://arxiv.org/html/2407.12101v2",
+    "dartboard_reference": "https://github.com/EmergenceAI/dartboard/blob/main/dartboard.py"
+  },
+  "implementation": "local NumPy implementation from published equations; no third-party source copied or imported"
+}

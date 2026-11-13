@@ -1,0 +1,15 @@
+.venv/
+.venv_experiment/
+.tmp_*/
+models/
+__pycache__/
+data/raw/
+data/processed/
+output/
+*.pdf
+.env
+.env.*
+!.env.example
+results/**/case_analysis.jsonl
+results/**/passage_preprocessing.jsonl
+results/**/tfidf_vocabulary.json

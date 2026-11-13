@@ -1,0 +1,196 @@
+{
+  "display_metrics": [
+    "recall@5",
+    "recall@10",
+    "recall@20",
+    "precision@5",
+    "precision@10",
+    "precision@20",
+    "mrr@5",
+    "ndcg@5"
+  ],
+  "display_policy": {
+    "comparison_order": [
+      "A5",
+      "A0",
+      "A7",
+      "A8",
+      "A2",
+      "A3",
+      "A1"
+    ],
+    "best": "bold",
+    "second_distinct_best": "underline",
+    "ties": "all marked",
+    "tie_tolerance": 1e-12
+  },
+  "scope": "Current formal methods only: A0/A1/A2/A3/A5/A7/A8; pooling CLS/Mean/Max and document L2. Archived variants excluded.",
+  "common": {
+    "dataset": "mteb/T2Retrieval dev derived pilot",
+    "queries": 100,
+    "passages": 1000,
+    "query_seed": 2026,
+    "candidate_seed": 2027,
+    "relevant_union_passages": 512,
+    "random_unjudged_passages": 488,
+    "output_k": 20,
+    "qrels": "binary score=1; unjudged treated as non-relevant; macro average over the same 100 queries",
+    "cleaning": "HTML unescape, replace <[^>]*> with space, unescape again, NFKC, collapse whitespace; empty passage becomes single space",
+    "query_instruction": null,
+    "training": false,
+    "external_model_calls": false,
+    "device": "CPU"
+  },
+  "bge_baseline_defaults": {
+    "model": "BAAI/bge-small-zh-v1.5",
+    "model_snapshot": "46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59",
+    "max_length": 512,
+    "truncation": "right",
+    "document_batch_size": 64,
+    "query_batch_size": 256,
+    "threads": 4,
+    "device": "CPU",
+    "normalization": "L2 for both query and passage in both variants",
+    "query_instruction": "none; original pilot query processing, not a query-enhancement experiment",
+    "embedding_dimension": 512,
+    "encoder_layers": 4,
+    "attention_heads": 8,
+    "exception": "N-Off disables document L2 only; other defaults stay fixed"
+  },
+  "methods": {
+    "A0": {
+      "implementation": "bm25s==0.3.16",
+      "method": "lucene",
+      "idf_method": "lucene",
+      "k1": 1.5,
+      "b": 0.75,
+      "delta": "not used",
+      "dtype": "float32",
+      "retrieval_depth": 100,
+      "output_k": 20
+    },
+    "A1": {
+      "model": "BAAI/bge-small-zh-v1.5",
+      "pooling": "CLS",
+      "query_l2": true,
+      "document_l2": true,
+      "score": "unit query dot unit passage = cosine",
+      "exact_search_pool": 1000,
+      "output_k": 20
+    },
+    "A2": {
+      "inputs": [
+        "A0",
+        "A1"
+      ],
+      "input_depth_each": 100,
+      "rrf_constant": 60,
+      "weights": [
+        1,
+        1
+      ],
+      "formula": "sum(1/(60+rank)), rank starts at 1; absent item contributes 0",
+      "output_k": 20,
+      "audit": "recomputed depth100 matches all100 saved rankings; depth50 matches9/100; saved depth50 is not fusion input depth"
+    },
+    "A3": {
+      "initial_candidates": "same original BM25 top20 IDs",
+      "reranker": "BAAI/bge-reranker-base",
+      "snapshot": "2cfc18c9415c912f9d8155881c133215df768a70",
+      "max_pair_tokens": 512,
+      "truncation": "right, default longest_first",
+      "batch_size": 32,
+      "threads": 4,
+      "device": "CPU",
+      "scoring": "first ONNX output column; descending raw scores, no sigmoid",
+      "tie_break": "original BM25 order",
+      "output_k": 20
+    },
+    "A5": {
+      "implementation": "scikit-learn==1.9.1 TfidfVectorizer",
+      "ngram_range": [
+        1,
+        1
+      ],
+      "tokenizer": "str.split after shared jieba/regex preprocessing",
+      "token_pattern": null,
+      "lowercase": false,
+      "stop_words": null,
+      "use_idf": true,
+      "smooth_idf": true,
+      "sublinear_tf": false,
+      "binary": false,
+      "norm": "l2",
+      "min_df": 1,
+      "max_df": 1.0,
+      "max_features": null,
+      "dtype": "float64",
+      "fit": "passages only; queries transformed only",
+      "vocabulary_size": 37877,
+      "scoring": "L2 TF-IDF dot product",
+      "tie_break": "stable original pool order",
+      "output_k": 20
+    },
+    "A7": {
+      "implementation": "bm25s==0.3.16",
+      "method": "bm25l",
+      "idf_method": "bm25l",
+      "k1": 1.5,
+      "b": 0.75,
+      "delta": 0.5,
+      "dtype": "float32",
+      "retrieval_depth": 100,
+      "output_k": 20
+    },
+    "A8": {
+      "implementation": "bm25s==0.3.16",
+      "method": "bm25+",
+      "idf_method": "bm25+",
+      "k1": 1.5,
+      "b": 0.75,
+      "delta": 0.5,
+      "dtype": "float32",
+      "retrieval_depth": 100,
+      "output_k": 20
+    }
+  },
+  "lexical_preprocessing": {
+    "jieba_version": "0.42.1",
+    "HMM": false,
+    "lowercase": true,
+    "splitter": "(?u)\\b\\w+\\b",
+    "stopwords": []
+  },
+  "ablation": {
+    "pooling": {
+      "control": "A1",
+      "P-Mean": "attention-mask mean; exclude padding, include valid CLS/SEP; L2 query and passage",
+      "P-Max": "dimensionwise token max; padding=-infinity, valid CLS/SEP included; L2 query and passage",
+      "fixed": "model weights, tokenizer, queries/passages, cleaning, max length512, normalization and cosine scoring"
+    },
+    "document_l2": {
+      "control": "A1 = q_unit @ d_unit",
+      "N-Off": "same original unit CLS query @ raw unnormalized CLS passage",
+      "fixed": "same dot-product operator, CLS pooling, original token states, query vectors and all other settings",
+      "raw_norm_min": 5.032103061676025,
+      "raw_norm_max": 8.003568649291992
+    }
+  },
+  "environment": [
+    "bm25s==0.3.16",
+    "fastembed==0.9.1",
+    "jieba==0.42.1",
+    "numpy==2.5.4",
+    "onnxruntime==1.31.1",
+    "pyarrow==26.0.1",
+    "scikit-learn==1.9.1",
+    "scipy==1.18.1",
+    "tokenizers==0.23.3",
+    "huggingface-hub==1.33.0"
+  ],
+  "source_file_hashes": {
+    "corpus": "8f0400530c6ba664e580e2ae7bb5ed41a908b8abc17c3b3934f42cc65992ac1e",
+    "queries": "186b4d0a13cc4d8339eccfc6d465d1b2d4d1f6572defa8d39f3c8da3b66b0210",
+    "qrels": "c4c6ffd715faf151e0832a26dfcf2d7ec1edc17d9620a9aa99e721cc2436d7d2"
+  }
+}

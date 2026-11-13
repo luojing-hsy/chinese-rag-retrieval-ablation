@@ -1,0 +1,193 @@
+{
+  "timestamp_utc": "2026-11-13T05:23:41.185565+00:00",
+  "config": {
+    "dataset": "mteb/T2Retrieval dev derived pilot",
+    "queries": 100,
+    "passages": 1000,
+    "output_k": 20,
+    "bm25_variants": {
+      "lucene": {
+        "k1": 1.5,
+        "b": 0.75
+      },
+      "bm25l": {
+        "k1": 1.5,
+        "b": 0.75,
+        "delta": 0.5
+      },
+      "bm25+": {
+        "k1": 1.5,
+        "b": 0.75,
+        "delta": 0.5
+      }
+    },
+    "bm25_idf": "each method uses its BM25S default IDF; method comparison, not single-component ablation",
+    "bm25_preprocessing": "same jieba HMM=False, lowercase, word regex and no stopwords as original A0",
+    "bm25_retrieval_depth": 100,
+    "model": "BAAI/bge-small-zh-v1.5",
+    "model_snapshot": "46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59",
+    "max_length": 512,
+    "document_batch_size": 64,
+    "query_batch_size": 256,
+    "threads": 4,
+    "device": "CPU",
+    "pooling_ablation": "CLS vs masked Max; exclude padding with -infinity, include non-padding CLS/SEP; apply consistently to query and passage; L2 both, then dot",
+    "normalization_ablation": "fixed normalized original CLS queries and same dot-product scorer; only document CLS L2 normalization enabled vs disabled",
+    "normalization_warning": "not a redundant normalization toggle inside cosine; raw token CLS vectors are retained before normalization",
+    "text_processing": "original clean_text and original queries; no new prefixes, chunking or query expansion",
+    "parameter_policy": "fixed before first run, no evaluation-set tuning",
+    "training": false,
+    "network_calls": 0,
+    "sources": {
+      "bm25s": "https://github.com/xhluca/bm25s",
+      "bge": "https://huggingface.co/BAAI/bge-small-zh-v1.5"
+    }
+  },
+  "input_sha256": {
+    "src\\run_additional_ablation.py": "a52b002d05de21ffce827cdb9b42d41f6ac13725327c0d605531bb344c93e09d",
+    "src\\run_retrieval_extensions.py": "a3649080ae5a6b5b5bd986c925e801b5ed3a6f50eaea2db36dc429e3724df5f6",
+    "src\\run_t2retrieval_ablation.py": "de195abb8b9fea91fcd28d705764c3512408806c94ab2d51a85829ecb77a2da2",
+    "results\\t2retrieval\\pilot\\query_sample.jsonl": "f934cf775638ca5103a7212ac54a122325ad12285ac7c1340a30ec37629558bf",
+    "results\\t2retrieval\\pilot\\candidate_pool_doc_ids.txt": "74510f2bf4049777fe2e6f09b8477faccf68789154eb6095573292e1b0e4ca18",
+    "results\\t2retrieval\\pilot\\metrics.csv": "3b8d4cd3a9ab068057bd6b26d0cf16c84bfd20a8d5cdb5f1e9a97b78791a6eea",
+    "models\\fastembed\\models--Qdrant--bge-small-zh-v1.5\\snapshots\\46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59\\model_optimized.onnx": "1294ea4b6331115a353d81f96b85e8c8d7fdcc284453d5b2fab5b016230aad38",
+    "models\\fastembed\\models--Qdrant--bge-small-zh-v1.5\\snapshots\\46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59\\tokenizer.json": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26",
+    "models\\fastembed\\models--Qdrant--bge-small-zh-v1.5\\snapshots\\46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59\\tokenizer_config.json": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a"
+  },
+  "output_vector_sha256": {
+    "data\\processed\\t2retrieval\\pilot\\additional_ablation\\cls_raw_documents.npy": "a30b2e4a802384d7253060102022414b437fe9e2d21ed5762713d66b18e8f7cd",
+    "data\\processed\\t2retrieval\\pilot\\additional_ablation\\cls_raw_queries.npy": "2883b61d748cbbe7c12034cb86bec350064f7ab472cf4dddf654d6a5907af8fa",
+    "data\\processed\\t2retrieval\\pilot\\additional_ablation\\ids.json": "e1fe5cbacb6c6aa434839089a2a09b07b0396e29ea111b6236a65bc711e7be34",
+    "data\\processed\\t2retrieval\\pilot\\additional_ablation\\max_documents.npy": "a7d30ca4ee2ee71a5678671d3f49126e27a0a8d6f8fe50711816bd600a4f7b93",
+    "data\\processed\\t2retrieval\\pilot\\additional_ablation\\max_queries.npy": "e3a9322d3a28d295621616eee49a32e89d779e3b0dfab59dd6cd7badfecd885b"
+  },
+  "source_experiment": {
+    "dataset": "mteb/T2Retrieval",
+    "subset": "dev",
+    "dataset_license": "Apache-2.0",
+    "candidate_pool_note": "Pilot candidate pool contains exactly the configured total: all qrel-relevant passages for the sampled queries plus deterministic random unjudged passages. Unjudged candidates are treated as non-relevant. This is not the official full MTEB/T2Ranking candidate corpus.",
+    "original_t2ranking_alignment": {
+      "mteb_query_ids": 22812,
+      "original_query_rows": 24832,
+      "mteb_qrels_pairs": 118932,
+      "original_qrels_pairs_excluding_header": 118932,
+      "query_text_quote_differences": 10,
+      "full_original_corpus_hash_checked": false
+    },
+    "sample_queries": 100,
+    "full_mteb_corpus_passages": 118605,
+    "candidate_passages": 1000,
+    "sampled_relevant_union_passages": 512,
+    "sampled_random_unjudged_passages": 488,
+    "candidate_passages_requested": 1000,
+    "candidate_sample_seed": 2027,
+    "seed": 2026,
+    "candidate_k": 100,
+    "top_k": 20,
+    "rrf_constant": 60,
+    "model": "BAAI/bge-small-zh-v1.5",
+    "model_inference": "local FastEmbed ONNX CPU, serial document encoding; local_files_only=True",
+    "corpus_file_sha256": "8f0400530c6ba664e580e2ae7bb5ed41a908b8abc17c3b3934f42cc65992ac1e",
+    "query_file_sha256": "186b4d0a13cc4d8339eccfc6d465d1b2d4d1f6572defa8d39f3c8da3b66b0210",
+    "qrels_file_sha256": "c4c6ffd715faf151e0832a26dfcf2d7ec1edc17d9620a9aa99e721cc2436d7d2",
+    "cleaning_version": "html-tags-unescape-nfkc-v1",
+    "python": "3.12.10",
+    "packages": {
+      "fastembed": "0.9.1",
+      "bm25s": "0.3.16",
+      "jieba": "0.42.1",
+      "pyarrow": "26.0.1",
+      "numpy": "2.5.4",
+      "onnxruntime": "1.31.1"
+    },
+    "timestamp_utc": "2026-11-12T12:26:02.646307+00:00",
+    "document_embedding_cache_hit": false,
+    "reported_top_k": 20,
+    "methods_completed": [
+      "bm25",
+      "dense_bge_small_zh",
+      "hybrid_rrf",
+      "bm25_top20_bge_rerank",
+      "dense_sentence_chunks_parent_max"
+    ],
+    "a3": {
+      "model": "BAAI/bge-reranker-base",
+      "candidate_ids_source": "same BM25 top-20 IDs as A0",
+      "only_change": "ordering by cross-encoder scores",
+      "local_only": true,
+      "model_load_seconds": null,
+      "query_scoring_seconds": 654.0,
+      "timing_note": "The 100-query A3 scoring pass completed in 654 seconds; its rank output was saved before a later A4 metrics aggregation error. Model-load time was not persisted."
+    },
+    "a4": {
+      "chunking": "sentence-boundary merge, max 300 chars, overlap 50 for long sentences",
+      "parent_pool": 1000,
+      "child_chunks": 3374,
+      "aggregation": "max child cosine similarity per parent passage",
+      "local_model": "BAAI/bge-small-zh-v1.5",
+      "chunk_prepare_seconds": 0.017,
+      "chunk_embedding_seconds": 77.813,
+      "query_embedding_seconds": 0.145,
+      "parent_search_seconds": 0.014
+    },
+    "metrics_file": "metrics.csv (all methods reported at top-20)",
+    "candidate_parent_passages": 1000
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "packages": {
+      "numpy": "2.5.4",
+      "bm25s": "0.3.16",
+      "jieba": "0.42.1",
+      "fastembed": "0.9.1",
+      "onnxruntime": "1.31.1"
+    }
+  },
+  "timing_seconds": {
+    "data_and_validation": 5.463426399999662,
+    "lexical": {
+      "shared_tokenization": 1.6001009000010527,
+      "lucene_index": 0.08483659999910742,
+      "lucene_search": 0.005463899999085697,
+      "bm25l_index": 0.11531410000134201,
+      "bm25l_search": 0.004024400001071626,
+      "bm25+_index": 0.11044220000076166,
+      "bm25+_search": 0.005620699999781209
+    },
+    "bge_load": 0.13879089999863936,
+    "documents": {
+      "shared_forward": 42.449834299999566,
+      "extract_raw_and_max_pool_normalize": 0.4026614000031259
+    },
+    "queries": {
+      "shared_forward": 0.15558620000047085,
+      "extract_raw_and_max_pool_normalize": 0.0015841999993426725
+    },
+    "max_search": 0.010459099999934551,
+    "raw_document_dot_search": 0.009314299999459763,
+    "wall_before_metadata_write": 51.58094960000017
+  },
+  "timing_scope": "shared tokenization and shared BGE forward counted once; includes validation/output in wall, excludes process startup/imports",
+  "raw_cls_document_norms": {
+    "min": 5.032103061676025,
+    "max": 8.003568649291992,
+    "mean": 6.547769546508789,
+    "std": 0.44114506244659424
+  },
+  "normalized_cls_max_error": 0.0,
+  "checks_passed": [
+    "original data hashes and ID/qrels alignment",
+    "BGE baseline ranks and six metrics reproduce A1",
+    "Lucene BM25 ranks and six metrics reproduce A0",
+    "normalized fresh CLS document/query vectors match cache",
+    "masked max excludes padding and equals direct valid-token max",
+    "finite unit max vectors",
+    "document raw norms vary",
+    "normalization-on with fixed dot restores baseline",
+    "20 unique in-pool outputs per query"
+  ]
+}

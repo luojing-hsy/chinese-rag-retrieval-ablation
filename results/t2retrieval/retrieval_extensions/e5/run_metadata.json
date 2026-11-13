@@ -1,0 +1,199 @@
+{
+  "timestamp_utc": "2026-11-13T04:51:13.334078+00:00",
+  "config": {
+    "dataset": "mteb/T2Retrieval dev derived pilot",
+    "queries": 100,
+    "passages": 1000,
+    "output_k": 20,
+    "evaluation": "same original passage-level binary qrels; unjudged treated as non-relevant",
+    "model_training": false,
+    "inference_network_calls": 0,
+    "parameter_policy": "fixed before first run; no evaluation-set tuning",
+    "model": "intfloat/multilingual-e5-small",
+    "weights": "official unquantized FP32 onnx/model.onnx",
+    "query_prefix": "query: ",
+    "passage_prefix": "passage: ",
+    "max_length": 512,
+    "pooling": "attention-mask mean, including non-padding special tokens",
+    "normalization": "L2",
+    "document_batch_size": 32,
+    "query_batch_size": 32,
+    "threads": 4,
+    "device": "CPU",
+    "scoring": "exact cosine over all 1000 passages",
+    "text_cleaning": "original pilot clean_text",
+    "role": "pretrained encoder pipeline comparison; tokenizer, prefix and pooling follow E5, not a single-factor ablation",
+    "source": "https://huggingface.co/intfloat/multilingual-e5-small"
+  },
+  "details": {
+    "model_provenance": {
+      "repo": "intfloat/multilingual-e5-small",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "license": "MIT, declared in upstream model card",
+      "download_started_utc": "2026-11-13T04:42:27.399127+00:00",
+      "download_completed_utc": "2026-11-13T04:44:08.892549+00:00",
+      "files": {
+        "onnx/model.onnx": {
+          "bytes": 470268510,
+          "sha256": "ca456c06b3a9505ddfd9131408916dd79290368331e7d76bb621f1cba6bc8665"
+        },
+        "config.json": {
+          "bytes": 655,
+          "sha256": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959"
+        },
+        "tokenizer.json": {
+          "bytes": 17082730,
+          "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39"
+        },
+        "tokenizer_config.json": {
+          "bytes": 443,
+          "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+        },
+        "special_tokens_map.json": {
+          "bytes": 167,
+          "sha256": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7"
+        },
+        "README.md": {
+          "bytes": 497538,
+          "sha256": "0038de97aee16258cecbad7ffda4b4febd6953e747a00e0ddbc8e6ed241e9c1c"
+        }
+      }
+    },
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "input_names": [
+      "input_ids",
+      "attention_mask",
+      "token_type_ids"
+    ],
+    "output_names": [
+      "last_hidden_state"
+    ],
+    "valid_token_lengths": {
+      "documents": [
+        7,
+        512
+      ],
+      "queries": [
+        8,
+        22
+      ]
+    },
+    "padding_token": "<pad>",
+    "padding_id": 1
+  },
+  "source_experiment": {
+    "dataset": "mteb/T2Retrieval",
+    "subset": "dev",
+    "dataset_license": "Apache-2.0",
+    "candidate_pool_note": "Pilot candidate pool contains exactly the configured total: all qrel-relevant passages for the sampled queries plus deterministic random unjudged passages. Unjudged candidates are treated as non-relevant. This is not the official full MTEB/T2Ranking candidate corpus.",
+    "original_t2ranking_alignment": {
+      "mteb_query_ids": 22812,
+      "original_query_rows": 24832,
+      "mteb_qrels_pairs": 118932,
+      "original_qrels_pairs_excluding_header": 118932,
+      "query_text_quote_differences": 10,
+      "full_original_corpus_hash_checked": false
+    },
+    "sample_queries": 100,
+    "full_mteb_corpus_passages": 118605,
+    "candidate_passages": 1000,
+    "sampled_relevant_union_passages": 512,
+    "sampled_random_unjudged_passages": 488,
+    "candidate_passages_requested": 1000,
+    "candidate_sample_seed": 2027,
+    "seed": 2026,
+    "candidate_k": 100,
+    "top_k": 20,
+    "rrf_constant": 60,
+    "model": "BAAI/bge-small-zh-v1.5",
+    "model_inference": "local FastEmbed ONNX CPU, serial document encoding; local_files_only=True",
+    "corpus_file_sha256": "8f0400530c6ba664e580e2ae7bb5ed41a908b8abc17c3b3934f42cc65992ac1e",
+    "query_file_sha256": "186b4d0a13cc4d8339eccfc6d465d1b2d4d1f6572defa8d39f3c8da3b66b0210",
+    "qrels_file_sha256": "c4c6ffd715faf151e0832a26dfcf2d7ec1edc17d9620a9aa99e721cc2436d7d2",
+    "cleaning_version": "html-tags-unescape-nfkc-v1",
+    "python": "3.12.10",
+    "packages": {
+      "fastembed": "0.9.1",
+      "bm25s": "0.3.16",
+      "jieba": "0.42.1",
+      "pyarrow": "26.0.1",
+      "numpy": "2.5.4",
+      "onnxruntime": "1.31.1"
+    },
+    "timestamp_utc": "2026-11-12T12:26:02.646307+00:00",
+    "document_embedding_cache_hit": false,
+    "reported_top_k": 20,
+    "methods_completed": [
+      "bm25",
+      "dense_bge_small_zh",
+      "hybrid_rrf",
+      "bm25_top20_bge_rerank",
+      "dense_sentence_chunks_parent_max"
+    ],
+    "a3": {
+      "model": "BAAI/bge-reranker-base",
+      "candidate_ids_source": "same BM25 top-20 IDs as A0",
+      "only_change": "ordering by cross-encoder scores",
+      "local_only": true,
+      "model_load_seconds": null,
+      "query_scoring_seconds": 654.0,
+      "timing_note": "The 100-query A3 scoring pass completed in 654 seconds; its rank output was saved before a later A4 metrics aggregation error. Model-load time was not persisted."
+    },
+    "a4": {
+      "chunking": "sentence-boundary merge, max 300 chars, overlap 50 for long sentences",
+      "parent_pool": 1000,
+      "child_chunks": 3374,
+      "aggregation": "max child cosine similarity per parent passage",
+      "local_model": "BAAI/bge-small-zh-v1.5",
+      "chunk_prepare_seconds": 0.017,
+      "chunk_embedding_seconds": 77.813,
+      "query_embedding_seconds": 0.145,
+      "parent_search_seconds": 0.014
+    },
+    "metrics_file": "metrics.csv (all methods reported at top-20)",
+    "candidate_parent_passages": 1000
+  },
+  "input_sha256": {
+    "src\\run_retrieval_extensions.py": "a3649080ae5a6b5b5bd986c925e801b5ed3a6f50eaea2db36dc429e3724df5f6",
+    "src\\run_t2retrieval_ablation.py": "de195abb8b9fea91fcd28d705764c3512408806c94ab2d51a85829ecb77a2da2",
+    "results\\t2retrieval\\pilot\\query_sample.jsonl": "f934cf775638ca5103a7212ac54a122325ad12285ac7c1340a30ec37629558bf",
+    "results\\t2retrieval\\pilot\\candidate_pool_doc_ids.txt": "74510f2bf4049777fe2e6f09b8477faccf68789154eb6095573292e1b0e4ca18",
+    "results\\t2retrieval\\pilot\\metrics.csv": "3b8d4cd3a9ab068057bd6b26d0cf16c84bfd20a8d5cdb5f1e9a97b78791a6eea",
+    "data\\processed\\t2retrieval\\pilot\\pooling_ablation\\cls_documents.npy": "223f96d3a9428edadc10902b39b5d61d1932143a7a600caddba4704946177eaf",
+    "data\\processed\\t2retrieval\\pilot\\pooling_ablation\\cls_queries.npy": "b7829eb65d941c16649dbd6be7354c11f1f6a6053ecadb78e94d23412b0a2e76"
+  },
+  "runtime": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "packages": {
+      "numpy": "2.5.4",
+      "onnxruntime": "1.31.1",
+      "tokenizers": "0.23.3",
+      "fastembed": "0.9.1",
+      "pyarrow": "26.0.1",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1"
+    }
+  },
+  "timing_seconds": {
+    "data_load_and_validation_shared": 7.2931737999997495,
+    "baseline_cached_search_shared": 0.010037800000645802,
+    "model_and_tokenizer_load": 1.2279402000003756,
+    "document_encoding": 210.7229324,
+    "query_encoding": 0.6392754999997123,
+    "full_pool_search": 0.00519709999935003,
+    "stage_wall_before_metadata_write": 214.2000793999996
+  },
+  "timing_scope": "stage excludes model download, process startup/imports; shared data and cached baseline search listed separately",
+  "checks_passed": [
+    "raw data hashes and qrels match original",
+    "same 100 query and 1000 passage IDs",
+    "cached CLS vector hashes and IDs match pooling run",
+    "baseline top20 IDs and six metrics exactly reproduce A1",
+    "20 unique in-pool outputs per query",
+    "local inference only; no training"
+  ]
+}

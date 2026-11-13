@@ -1,0 +1,72 @@
+{
+  "dataset": "mteb/T2Retrieval",
+  "subset": "dev",
+  "dataset_license": "Apache-2.0",
+  "candidate_pool_note": "Pilot candidate pool contains exactly the configured total: all qrel-relevant passages for the sampled queries plus deterministic random unjudged passages. Unjudged candidates are treated as non-relevant. This is not the official full MTEB/T2Ranking candidate corpus.",
+  "original_t2ranking_alignment": {
+    "mteb_query_ids": 22812,
+    "original_query_rows": 24832,
+    "mteb_qrels_pairs": 118932,
+    "original_qrels_pairs_excluding_header": 118932,
+    "query_text_quote_differences": 10,
+    "full_original_corpus_hash_checked": false
+  },
+  "sample_queries": 100,
+  "full_mteb_corpus_passages": 118605,
+  "candidate_passages": 1000,
+  "sampled_relevant_union_passages": 512,
+  "sampled_random_unjudged_passages": 488,
+  "candidate_passages_requested": 1000,
+  "candidate_sample_seed": 2027,
+  "seed": 2026,
+  "candidate_k": 100,
+  "top_k": 20,
+  "rrf_constant": 60,
+  "model": "BAAI/bge-small-zh-v1.5",
+  "model_inference": "local FastEmbed ONNX CPU, serial document encoding; local_files_only=True",
+  "corpus_file_sha256": "8f0400530c6ba664e580e2ae7bb5ed41a908b8abc17c3b3934f42cc65992ac1e",
+  "query_file_sha256": "186b4d0a13cc4d8339eccfc6d465d1b2d4d1f6572defa8d39f3c8da3b66b0210",
+  "qrels_file_sha256": "c4c6ffd715faf151e0832a26dfcf2d7ec1edc17d9620a9aa99e721cc2436d7d2",
+  "cleaning_version": "html-tags-unescape-nfkc-v1",
+  "python": "3.12.10",
+  "packages": {
+    "fastembed": "0.9.1",
+    "bm25s": "0.3.16",
+    "jieba": "0.42.1",
+    "pyarrow": "26.0.1",
+    "numpy": "2.5.4",
+    "onnxruntime": "1.31.1"
+  },
+  "timestamp_utc": "2026-11-12T12:26:02.646307+00:00",
+  "document_embedding_cache_hit": false,
+  "reported_top_k": 20,
+  "methods_completed": [
+    "bm25",
+    "dense_bge_small_zh",
+    "hybrid_rrf",
+    "bm25_top20_bge_rerank",
+    "dense_sentence_chunks_parent_max"
+  ],
+  "a3": {
+    "model": "BAAI/bge-reranker-base",
+    "candidate_ids_source": "same BM25 top-20 IDs as A0",
+    "only_change": "ordering by cross-encoder scores",
+    "local_only": true,
+    "model_load_seconds": null,
+    "query_scoring_seconds": 654.0,
+    "timing_note": "The 100-query A3 scoring pass completed in 654 seconds; its rank output was saved before a later A4 metrics aggregation error. Model-load time was not persisted."
+  },
+  "a4": {
+    "chunking": "sentence-boundary merge, max 300 chars, overlap 50 for long sentences",
+    "parent_pool": 1000,
+    "child_chunks": 3374,
+    "aggregation": "max child cosine similarity per parent passage",
+    "local_model": "BAAI/bge-small-zh-v1.5",
+    "chunk_prepare_seconds": 0.017,
+    "chunk_embedding_seconds": 77.813,
+    "query_embedding_seconds": 0.145,
+    "parent_search_seconds": 0.014
+  },
+  "metrics_file": "metrics.csv (all methods reported at top-20)",
+  "candidate_parent_passages": 1000
+}

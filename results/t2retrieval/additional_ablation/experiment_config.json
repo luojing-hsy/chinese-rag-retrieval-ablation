@@ -1,0 +1,43 @@
+{
+  "dataset": "mteb/T2Retrieval dev derived pilot",
+  "queries": 100,
+  "passages": 1000,
+  "output_k": 20,
+  "bm25_variants": {
+    "lucene": {
+      "k1": 1.5,
+      "b": 0.75
+    },
+    "bm25l": {
+      "k1": 1.5,
+      "b": 0.75,
+      "delta": 0.5
+    },
+    "bm25+": {
+      "k1": 1.5,
+      "b": 0.75,
+      "delta": 0.5
+    }
+  },
+  "bm25_idf": "each method uses its BM25S default IDF; method comparison, not single-component ablation",
+  "bm25_preprocessing": "same jieba HMM=False, lowercase, word regex and no stopwords as original A0",
+  "bm25_retrieval_depth": 100,
+  "model": "BAAI/bge-small-zh-v1.5",
+  "model_snapshot": "46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59",
+  "max_length": 512,
+  "document_batch_size": 64,
+  "query_batch_size": 256,
+  "threads": 4,
+  "device": "CPU",
+  "pooling_ablation": "CLS vs masked Max; exclude padding with -infinity, include non-padding CLS/SEP; apply consistently to query and passage; L2 both, then dot",
+  "normalization_ablation": "fixed normalized original CLS queries and same dot-product scorer; only document CLS L2 normalization enabled vs disabled",
+  "normalization_warning": "not a redundant normalization toggle inside cosine; raw token CLS vectors are retained before normalization",
+  "text_processing": "original clean_text and original queries; no new prefixes, chunking or query expansion",
+  "parameter_policy": "fixed before first run, no evaluation-set tuning",
+  "training": false,
+  "network_calls": 0,
+  "sources": {
+    "bm25s": "https://github.com/xhluca/bm25s",
+    "bge": "https://huggingface.co/BAAI/bge-small-zh-v1.5"
+  }
+}

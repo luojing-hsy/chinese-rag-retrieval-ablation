@@ -1,0 +1,34 @@
+{
+  "e5_small": {
+    "recall@5": {
+      "wins": 3,
+      "ties": 94,
+      "losses": 3
+    },
+    "recall@10": {
+      "wins": 1,
+      "ties": 93,
+      "losses": 6
+    },
+    "recall@20": {
+      "wins": 3,
+      "ties": 94,
+      "losses": 3
+    },
+    "mrr@10": {
+      "wins": 1,
+      "ties": 99,
+      "losses": 0
+    },
+    "ndcg@10": {
+      "wins": 9,
+      "ties": 83,
+      "losses": 8
+    },
+    "precision@10": {
+      "wins": 1,
+      "ties": 93,
+      "losses": 6
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "tfidf_word": {
+    "recall@5": {
+      "wins": 2,
+      "ties": 71,
+      "losses": 27
+    },
+    "recall@10": {
+      "wins": 1,
+      "ties": 70,
+      "losses": 29
+    },
+    "recall@20": {
+      "wins": 1,
+      "ties": 75,
+      "losses": 24
+    },
+    "mrr@10": {
+      "wins": 1,
+      "ties": 91,
+      "losses": 8
+    },
+    "ndcg@10": {
+      "wins": 5,
+      "ties": 52,
+      "losses": 43
+    },
+    "precision@10": {
+      "wins": 1,
+      "ties": 70,
+      "losses": 29
+    }
+  },
+  "bge_keep_html": {
+    "recall@5": {
+      "wins": 1,
+      "ties": 99,
+      "losses": 0
+    },
+    "recall@10": {
+      "wins": 2,
+      "ties": 97,
+      "losses": 1
+    },
+    "recall@20": {
+      "wins": 0,
+      "ties": 100,
+      "losses": 0
+    },
+    "mrr@10": {
+      "wins": 1,
+      "ties": 99,
+      "losses": 0
+    },
+    "ndcg@10": {
+      "wins": 5,
+      "ties": 92,
+      "losses": 3
+    },
+    "precision@10": {
+      "wins": 2,
+      "ties": 97,
+      "losses": 1
+    }
+  }
+}

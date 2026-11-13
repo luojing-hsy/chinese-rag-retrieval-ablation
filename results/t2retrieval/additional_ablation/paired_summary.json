@@ -1,0 +1,162 @@
+{
+  "bm25_lucene": {
+    "recall@5": {
+      "wins": 2,
+      "ties": 76,
+      "losses": 22
+    },
+    "recall@10": {
+      "wins": 1,
+      "ties": 71,
+      "losses": 28
+    },
+    "recall@20": {
+      "wins": 1,
+      "ties": 77,
+      "losses": 22
+    },
+    "mrr@10": {
+      "wins": 1,
+      "ties": 93,
+      "losses": 6
+    },
+    "ndcg@10": {
+      "wins": 4,
+      "ties": 57,
+      "losses": 39
+    },
+    "precision@10": {
+      "wins": 1,
+      "ties": 71,
+      "losses": 28
+    }
+  },
+  "bm25l": {
+    "recall@5": {
+      "wins": 2,
+      "ties": 75,
+      "losses": 23
+    },
+    "recall@10": {
+      "wins": 1,
+      "ties": 71,
+      "losses": 28
+    },
+    "recall@20": {
+      "wins": 1,
+      "ties": 79,
+      "losses": 20
+    },
+    "mrr@10": {
+      "wins": 1,
+      "ties": 92,
+      "losses": 7
+    },
+    "ndcg@10": {
+      "wins": 4,
+      "ties": 57,
+      "losses": 39
+    },
+    "precision@10": {
+      "wins": 1,
+      "ties": 71,
+      "losses": 28
+    }
+  },
+  "bm25plus": {
+    "recall@5": {
+      "wins": 2,
+      "ties": 76,
+      "losses": 22
+    },
+    "recall@10": {
+      "wins": 1,
+      "ties": 71,
+      "losses": 28
+    },
+    "recall@20": {
+      "wins": 1,
+      "ties": 79,
+      "losses": 20
+    },
+    "mrr@10": {
+      "wins": 1,
+      "ties": 93,
+      "losses": 6
+    },
+    "ndcg@10": {
+      "wins": 4,
+      "ties": 57,
+      "losses": 39
+    },
+    "precision@10": {
+      "wins": 1,
+      "ties": 71,
+      "losses": 28
+    }
+  },
+  "bge_max": {
+    "recall@5": {
+      "wins": 0,
+      "ties": 87,
+      "losses": 13
+    },
+    "recall@10": {
+      "wins": 1,
+      "ties": 82,
+      "losses": 17
+    },
+    "recall@20": {
+      "wins": 0,
+      "ties": 89,
+      "losses": 11
+    },
+    "mrr@10": {
+      "wins": 1,
+      "ties": 95,
+      "losses": 4
+    },
+    "ndcg@10": {
+      "wins": 2,
+      "ties": 60,
+      "losses": 38
+    },
+    "precision@10": {
+      "wins": 1,
+      "ties": 82,
+      "losses": 17
+    }
+  },
+  "bge_cls_document_l2_off": {
+    "recall@5": {
+      "wins": 1,
+      "ties": 93,
+      "losses": 6
+    },
+    "recall@10": {
+      "wins": 2,
+      "ties": 92,
+      "losses": 6
+    },
+    "recall@20": {
+      "wins": 0,
+      "ties": 100,
+      "losses": 0
+    },
+    "mrr@10": {
+      "wins": 0,
+      "ties": 98,
+      "losses": 2
+    },
+    "ndcg@10": {
+      "wins": 6,
+      "ties": 76,
+      "losses": 18
+    },
+    "precision@10": {
+      "wins": 2,
+      "ties": 92,
+      "losses": 6
+    }
+  }
+}

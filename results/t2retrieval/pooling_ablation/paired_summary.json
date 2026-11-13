@@ -1,0 +1,38 @@
+{
+  "recall@5": {
+    "wins": 0,
+    "ties": 97,
+    "losses": 3,
+    "mean_delta": -0.007833333333333137
+  },
+  "recall@10": {
+    "wins": 1,
+    "ties": 88,
+    "losses": 11,
+    "mean_delta": -0.012246031746031782
+  },
+  "recall@20": {
+    "wins": 0,
+    "ties": 94,
+    "losses": 6,
+    "mean_delta": -0.009459706959706882
+  },
+  "mrr@10": {
+    "wins": 1,
+    "ties": 98,
+    "losses": 1,
+    "mean_delta": -0.006166666666666765
+  },
+  "ndcg@10": {
+    "wins": 4,
+    "ties": 73,
+    "losses": 23,
+    "mean_delta": -0.016731545415130222
+  },
+  "precision@10": {
+    "wins": 1,
+    "ties": 88,
+    "losses": 11,
+    "mean_delta": -0.010000000000000009
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "dataset": "mteb/T2Retrieval dev derived pilot",
+  "queries": 100,
+  "passages": 1000,
+  "output_k": 20,
+  "evaluation": "same original passage-level binary qrels; unjudged treated as non-relevant",
+  "model_training": false,
+  "inference_network_calls": 0,
+  "parameter_policy": "fixed before first run; no evaluation-set tuning",
+  "tfidf": {
+    "analyzer": "jieba HMM=False followed by lowercased word-regex tokens, matching BM25 preprocessing",
+    "ngram_range": [
+      1,
+      1
+    ],
+    "norm": "l2",
+    "smooth_idf": true,
+    "sublinear_tf": false,
+    "idf_fit": "passages only; queries only transformed",
+    "stop_words": null
+  },
+  "html_ablation": {
+    "model": "BAAI/bge-small-zh-v1.5",
+    "pooling": "CLS",
+    "max_length": 512,
+    "only_change": "passage HTML tag replacement enabled vs disabled",
+    "query_processing": "unchanged original pilot query and cached CLS vectors",
+    "fixed_steps": "HTML unescape twice, NFKC, whitespace normalization",
+    "cache_policy": "reuse unchanged passage vectors; encode only changed passage texts",
+    "batch_size": 64,
+    "threads": 4,
+    "normalization": "L2",
+    "scoring": "exact cosine over all 1000 passages"
+  },
+  "roles": {
+    "tfidf_word": "method comparison",
+    "bge_keep_html": "HTML-removal ablation treatment",
+    "bge_cls": "original A1 baseline"
+  }
+}
